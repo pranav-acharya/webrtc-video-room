@@ -8,6 +8,10 @@ import io from 'socket.io-client'
 class RoomPage extends Component {
   constructor(props) {
     super(props);
+    var a = navigator.mediaDevices.getUserMedia || "a";
+    var c = navigator.mozGetUserMedia || "c";
+    var b = navigator.webkitGetUserMedia || "b";
+    alert(a+'|'+b+'|'+c);
     var getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
     this.getUserMedia = getUserMedia({
       audio: true,
