@@ -8,9 +8,10 @@ import io from 'socket.io-client'
 class RoomPage extends Component {
   constructor(props) {
     super(props);
-    this.getUserMedia = navigator.mediaDevices.getUserMedia({
+    var getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+    this.getUserMedia = getUserMedia({
       audio: true,
-      video: false
+      video: true
     }).catch(e => alert('getUserMedia() error: ' + e.name + 'Log:' + JSON.stringify(e) + '|Msg:' + e.message))
     this.socket = io.connect();
   }
