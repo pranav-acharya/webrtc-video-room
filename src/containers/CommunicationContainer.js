@@ -62,7 +62,7 @@ class CommunicationContainer extends React.Component {
           component.localStream.getVideoTracks()[0].enabled = component.state.video;
           component.localStream.getAudioTracks()[0].enabled = component.state.audio;
         }, 
-        function(err){console.log(err)});
+        function(err){alert(err.message)});
         
   }
   handleInput(e) {

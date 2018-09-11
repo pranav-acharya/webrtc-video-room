@@ -21,7 +21,7 @@ class RoomPage extends Component {
     navigator.getUserMedia({
       audio: true,
       video: true
-    },function(stream){ console.log("success")}, function(err){console.log(err)});
+    },function(stream){ console.log("success")}, function(err){alert(err.message)});
     
     /*
     this.getUserMedia({

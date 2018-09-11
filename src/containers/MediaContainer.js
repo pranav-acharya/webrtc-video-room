@@ -32,7 +32,7 @@ class MediaBridge extends Component {
     }, (stream) => {
       this.localVideo.srcObject = this.localStream = stream;
     }, (err) => {
-      console.log(err);
+      alert(err.message);
     });
     this.props.socket.on('message', this.onMessage);
     this.props.socket.on('hangup', this.onRemoteHangup);
@@ -155,7 +155,7 @@ class MediaBridge extends Component {
       }, (stream) => {
         attachMediaIfReady();
       }, (err) => {
-        console.log(err);
+        alert(err.message);
       });
     }  
   }
