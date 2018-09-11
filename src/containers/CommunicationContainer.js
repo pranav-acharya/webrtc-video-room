@@ -43,27 +43,12 @@ class CommunicationContainer extends React.Component {
       this.setState({ message, sid });
     });
     socket.emit('find');
-    var component = this;
-    /*
     this.props.getUserMedia
       .then(stream => {
           this.localStream = stream;
           this.localStream.getVideoTracks()[0].enabled = this.state.video;
           this.localStream.getAudioTracks()[0].enabled = this.state.audio;
         });
-        */
-    
-        window.navigator.getUserMedia({
-          audio: true,
-          video: true
-        },function(stream){ 
-          console.log("success in comm");
-          component.localStream = stream;
-          component.localStream.getVideoTracks()[0].enabled = component.state.video;
-          component.localStream.getAudioTracks()[0].enabled = component.state.audio;
-        }, 
-        function(err){alert(err.message)});
-        
   }
   handleInput(e) {
     this.setState({[e.target.dataset.ref]: e.target.value});

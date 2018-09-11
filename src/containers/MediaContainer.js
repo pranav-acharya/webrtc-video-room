@@ -24,16 +24,8 @@ class MediaBridge extends Component {
     this.props.media(this);
   }
   componentDidMount() {
-    //this.props.getUserMedia
-    //  .then(stream => this.localVideo.srcObject = this.localStream = stream);
-    window.navigator.getUserMedia({
-      audio:true,
-      video:true,
-    }, (stream) => {
-      this.localVideo.srcObject = this.localStream = stream;
-    }, (err) => {
-      alert(err.message);
-    });
+    this.props.getUserMedia
+      .then(stream => this.localVideo.srcObject = this.localStream = stream);
     this.props.socket.on('message', this.onMessage);
     this.props.socket.on('hangup', this.onRemoteHangup);
   }
@@ -148,15 +140,7 @@ class MediaBridge extends Component {
     // call if we were the last to connect (to increase
     // chances that everything is set up properly at both ends)
     if (this.state.user === 'host') {
-      //this.props.getUserMedia.then(attachMediaIfReady);
-      window.navigator.getUserMedia({
-        audio:true,
-        video:true,
-      }, (stream) => {
-        attachMediaIfReady();
-      }, (err) => {
-        alert(err.message);
-      });
+      this.props.getUserMedia.then(attachMediaIfReady);
     }  
   }
   render(){

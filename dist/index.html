@@ -20,7 +20,8 @@
       var video = document.querySelector('video');
 
       navigator.mediaDevices.getUserMedia({
-        video: true
+        video: true,
+        audio: true
       }).then(function(stream) {
         video.srcObject = stream;
       }).catch(function(err){
