@@ -10,6 +10,7 @@ class RoomPage extends Component {
     super(props);
     var navigator = window.navigator;
     navigator.getUserMedia =  navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+    alert("GetUserMediaStatus" + (!!navigator.webkitGetUserMedia));
     /*
     navigator.getUserMedia = new Promise(function(resolve,reject){
       navigator.webkitGetUserMedia({
