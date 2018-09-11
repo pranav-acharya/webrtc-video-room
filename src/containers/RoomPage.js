@@ -8,15 +8,27 @@ import io from 'socket.io-client'
 class RoomPage extends Component {
   constructor(props) {
     super(props);
-    var a = navigator.mediaDevices.getUserMedia || "a";
-    var c = navigator.mozGetUserMedia || "c";
-    var b = navigator.webkitGetUserMedia || "b";
-    alert(a+'|'+b+'|'+c);
-    var getUserMedia = navigator.mediaDevices.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-    this.getUserMedia = getUserMedia({
+    var navigator = window.navigator;
+    navigator.getUserMedia =  navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+    /*
+    navigator.getUserMedia = new Promise(function(resolve,reject){
+      navigator.webkitGetUserMedia({
+        audio: true,
+        video: true
+      },function(stream){ resolve(stream)}, function(err){reject(err)});
+    }); 
+    */
+    navigator.getUserMedia({
+      audio: true,
+      video: true
+    },function(stream){ console.log("success")}, function(err){console.log(err)});
+    
+    /*
+    this.getUserMedia({
       audio: true,
       video: true
     }).catch(e => alert('getUserMedia() error: ' + e.name + 'Log:' + JSON.stringify(e) + '|Msg:' + e.message))
+    */
     this.socket = io.connect();
   }
   componentDidMount() {
@@ -25,8 +37,8 @@ class RoomPage extends Component {
   render(){
     return (
       <div>
-        <MediaContainer media={media => this.media = media} socket={this.socket} getUserMedia={this.getUserMedia} />
-        <CommunicationContainer socket={this.socket} media={this.media} getUserMedia={this.getUserMedia} />
+        <MediaContainer media={media => this.media = media} socket={this.socket} getUserMedia={window.navigator.getUserMedia} />
+        <CommunicationContainer socket={this.socket} media={this.media} getUserMedia={window.navigator.getUserMedia} />
       </div>
     );
   }
